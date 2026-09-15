@@ -13,6 +13,18 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        sans: ["Pretendard", "-apple-system", "BlinkMacSystemFont", "sans-serif"],
+      },
+      keyframes: {
+        twinkle: {
+          "0%, 100%": { opacity: "0.15", transform: "translateY(0px)" },
+          "50%": { opacity: "0.9", transform: "translateY(-6px)" },
+        },
+      },
+      animation: {
+        twinkle: "twinkle 4s ease-in-out infinite",
+      },
     },
   },
   plugins: [],

@@ -5,8 +5,8 @@ import { profile, links } from "@/data/profile";
 
 export default function Home() {
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-md flex-col items-center gap-8 px-4 py-10">
-      <div className="flex w-full justify-end">
+    <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-sm flex-col items-center justify-center gap-10 px-6 py-16 sm:px-8">
+      <div className="fixed right-5 top-5 sm:right-8 sm:top-8">
         <DarkModeToggle />
       </div>
       <Profile {...profile} />

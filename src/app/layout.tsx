@@ -1,17 +1,6 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import Starfield from "@/components/Starfield";
 
 export const metadata: Metadata = {
   title: "링크나무",
@@ -37,10 +26,14 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css"
+        />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background`}
-      >
+      <body className="relative font-sans antialiased">
+        <Starfield />
         {children}
       </body>
     </html>
