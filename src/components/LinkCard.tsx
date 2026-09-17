@@ -2,8 +2,14 @@
 
 import type { LinkItem } from "@/data/profile";
 
-export default function LinkCard({ id, label, url }: LinkItem) {
+type LinkCardProps = LinkItem & {
+  count: number;
+  onIncrement: (id: string) => void;
+};
+
+export default function LinkCard({ id, label, url, count, onIncrement }: LinkCardProps) {
   const handleClick = () => {
+    onIncrement(id);
     fetch("/api/click", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -18,9 +24,10 @@ export default function LinkCard({ id, label, url }: LinkItem) {
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      className="w-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] px-6 py-4 text-center font-medium text-foreground shadow-[0_4px_18px_rgba(120,80,50,0.08)] backdrop-blur-md transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-[0_8px_24px_rgba(120,80,50,0.12)] dark:shadow-[0_4px_18px_rgba(0,0,0,0.25)] dark:hover:bg-white/10 dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
+      className="flex w-full items-center rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] px-6 py-4 font-medium text-foreground shadow-[0_4px_18px_rgba(120,80,50,0.08)] backdrop-blur-md transition-all duration-200 ease-out hover:-translate-y-0.5 hover:bg-white/60 hover:shadow-[0_8px_24px_rgba(120,80,50,0.12)] dark:shadow-[0_4px_18px_rgba(0,0,0,0.25)] dark:hover:bg-white/10 dark:hover:shadow-[0_8px_24px_rgba(0,0,0,0.35)]"
     >
-      {label}
+      <span className="flex-1 text-center">{label}</span>
+      <span className="shrink-0 pl-2 text-xs font-normal text-foreground/50">{count}회</span>
     </a>
   );
 }
